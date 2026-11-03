@@ -3,18 +3,18 @@
   "group_lead": {
     "name": "Mishti Agarwal",
     "enrollment_no": "2501010708",
-    "github": ""
+    "github": "mishtiagrawal02-cloud"
   },
   "members": [
     {
       "name": "Awantika Maheshwari",
       "enrollment_no": "2501010107",
-      "github": ""
+      "github": "awantika-m"
     },
     {
       "name": "Nandani Dusad",
       "enrollment_no": "2501010296",
-      "github": ""
+      "github": "JeffyNandani"
     },
     {
       "name": "Shlok Garg",
@@ -22,6 +22,6 @@
       "github": "shlokgarg4664"
     }
   ],
-  "postgres_version": "",
+  "postgres_version": "16.14",
   "laptop_used_for_benchmarks": "MacBook Pro"
 }
