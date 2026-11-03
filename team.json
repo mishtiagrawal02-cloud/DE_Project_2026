@@ -1,0 +1,27 @@
+{
+  "team_number": "T0065",
+  "group_lead": {
+    "name": "Mishti Agarwal",
+    "enrollment_no": "2501010708",
+    "github": ""
+  },
+  "members": [
+    {
+      "name": "Awantika Maheshwari",
+      "enrollment_no": "2501010107",
+      "github": ""
+    },
+    {
+      "name": "Nandani Dusad",
+      "enrollment_no": "2501010296",
+      "github": ""
+    },
+    {
+      "name": "Shlok Garg",
+      "enrollment_no": "2501010677",
+      "github": "shlokgarg4664"
+    }
+  ],
+  "postgres_version": "",
+  "laptop_used_for_benchmarks": "MacBook Pro"
+}

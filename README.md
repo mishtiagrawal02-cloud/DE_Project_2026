@@ -22,10 +22,10 @@
 
 | Role | Name | Enrollment No. | GitHub Username |
 |------|------|----------------|-----------------|
-| Group Lead | | | |
-| Member 2 | | | |
-| Member 3 | | | |
-| Member 4 | | | |
+| Group Lead |Mishti Agarwal |2501010708 |mishtiagrawal02-cloud|
+| Member 2 |Awantika Maheshwari |2501010107 |awantika-m|
+| Member 3 |Nandini Dusad |2501010296 |JeffyNandani|
+| Member 4 |Shlok Garg |2501010677 |shlokgarg4664|
 
 **Team No.:** ____ · **Section:** ____ · **Repository URL:** ____
 
