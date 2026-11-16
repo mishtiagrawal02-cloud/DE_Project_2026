@@ -1,0 +1,119 @@
+digraph InstagramER {
+    graph [
+        rankdir=LR,
+        splines=ortho,
+        nodesep=0.5,
+        ranksep=1.0,
+        bgcolor="white",
+        label="Instagram Social Media Database - ER Diagram",
+        labelloc=t,
+        fontsize=20
+    ];
+
+    node [shape=plain, fontname="Arial"];
+    edge [fontname="Arial", fontsize=9, color="#555555", arrowhead=none];
+
+    users [label=<
+        <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+            <TR><TD BGCOLOR="#D6EAF8"><B>USERS</B></TD></TR>
+            <TR><TD ALIGN="LEFT"><B>PK</B> user_id</TD></TR>
+            <TR><TD ALIGN="LEFT">username (UNIQUE)</TD></TR>
+            <TR><TD ALIGN="LEFT">full_name, email</TD></TR>
+            <TR><TD ALIGN="LEFT">bio, account_type</TD></TR>
+            <TR><TD ALIGN="LEFT">is_private, is_verified</TD></TR>
+            <TR><TD ALIGN="LEFT">followers_count, following_count</TD></TR>
+            <TR><TD ALIGN="LEFT">created_at</TD></TR>
+        </TABLE>
+    >];
+
+    follows [label=<
+        <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+            <TR><TD BGCOLOR="#FCF3CF"><B>FOLLOWS</B></TD></TR>
+            <TR><TD ALIGN="LEFT"><B>PK, FK</B> follower_id</TD></TR>
+            <TR><TD ALIGN="LEFT"><B>PK, FK</B> followee_id</TD></TR>
+            <TR><TD ALIGN="LEFT">status, created_at</TD></TR>
+        </TABLE>
+    >];
+
+    posts [label=<
+        <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+            <TR><TD BGCOLOR="#D6EAF8"><B>POSTS</B></TD></TR>
+            <TR><TD ALIGN="LEFT"><B>PK</B> post_id</TD></TR>
+            <TR><TD ALIGN="LEFT"><B>FK</B> user_id</TD></TR>
+            <TR><TD ALIGN="LEFT">post_type, caption</TD></TR>
+            <TR><TD ALIGN="LEFT">location_name</TD></TR>
+            <TR><TD ALIGN="LEFT">like_count, comment_count</TD></TR>
+            <TR><TD ALIGN="LEFT">is_archived, created_at</TD></TR>
+        </TABLE>
+    >];
+
+    hashtags [label=<
+        <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+            <TR><TD BGCOLOR="#D5F5E3"><B>HASHTAGS</B></TD></TR>
+            <TR><TD ALIGN="LEFT"><B>PK</B> hashtag_id</TD></TR>
+            <TR><TD ALIGN="LEFT">tag (UNIQUE)</TD></TR>
+        </TABLE>
+    >];
+
+    post_hashtags [label=<
+        <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+            <TR><TD BGCOLOR="#FCF3CF"><B>POST_HASHTAGS</B></TD></TR>
+            <TR><TD ALIGN="LEFT"><B>PK, FK</B> post_id</TD></TR>
+            <TR><TD ALIGN="LEFT"><B>PK, FK</B> hashtag_id</TD></TR>
+        </TABLE>
+    >];
+
+    post_media [label=<
+        <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+            <TR><TD BGCOLOR="#D6EAF8"><B>POST_MEDIA</B></TD></TR>
+            <TR><TD ALIGN="LEFT"><B>PK, FK</B> post_id</TD></TR>
+            <TR><TD ALIGN="LEFT"><B>PK</B> position</TD></TR>
+            <TR><TD ALIGN="LEFT">media_type, media_url</TD></TR>
+            <TR><TD ALIGN="LEFT">width, height, duration_sec</TD></TR>
+        </TABLE>
+    >];
+
+    likes [label=<
+        <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+            <TR><TD BGCOLOR="#FCF3CF"><B>LIKES</B></TD></TR>
+            <TR><TD ALIGN="LEFT"><B>PK, FK</B> user_id</TD></TR>
+            <TR><TD ALIGN="LEFT"><B>PK, FK</B> post_id</TD></TR>
+            <TR><TD ALIGN="LEFT">created_at</TD></TR>
+        </TABLE>
+    >];
+
+    comments [label=<
+        <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+            <TR><TD BGCOLOR="#D6EAF8"><B>COMMENTS</B></TD></TR>
+            <TR><TD ALIGN="LEFT"><B>PK</B> comment_id</TD></TR>
+            <TR><TD ALIGN="LEFT"><B>FK</B> post_id, user_id</TD></TR>
+            <TR><TD ALIGN="LEFT"><B>FK</B> parent_comment_id</TD></TR>
+            <TR><TD ALIGN="LEFT">body, is_hidden</TD></TR>
+            <TR><TD ALIGN="LEFT">created_at</TD></TR>
+        </TABLE>
+    >];
+
+    stories [label=<
+        <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+            <TR><TD BGCOLOR="#D6EAF8"><B>STORIES</B></TD></TR>
+            <TR><TD ALIGN="LEFT"><B>PK</B> story_id</TD></TR>
+            <TR><TD ALIGN="LEFT"><B>FK</B> user_id</TD></TR>
+            <TR><TD ALIGN="LEFT">media_type</TD></TR>
+            <TR><TD ALIGN="LEFT">created_at, expires_at</TD></TR>
+            <TR><TD ALIGN="LEFT">view_count</TD></TR>
+        </TABLE>
+    >];
+
+    users -> follows [label="1 : many (follower)"];
+    users -> follows [label="1 : many (followee)"];
+    users -> posts [label="1 : many"];
+    users -> likes [label="1 : many"];
+    users -> comments [label="1 : many"];
+    users -> stories [label="1 : many"];
+    posts -> post_hashtags [label="1 : many"];
+    hashtags -> post_hashtags [label="1 : many"];
+    posts -> post_media [label="1 : many"];
+    posts -> likes [label="1 : many"];
+    posts -> comments [label="1 : many"];
+    comments -> comments [label="parent / reply"];
+}
