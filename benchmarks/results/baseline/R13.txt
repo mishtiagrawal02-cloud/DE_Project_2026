@@ -1,0 +1,36 @@
+=== R13 run 1 ===
+Seq Scan on comments c  (cost=3163.00..6701.00 rows=2 width=24) (actual time=44.491..44.492 rows=0.00 loops=1)
+  Filter: ((NOT (ANY (comment_id = (hashed SubPlan 1).col1))) AND (post_id = 59689))
+  Rows Removed by Filter: 150000
+  Buffers: shared hit=2576
+  SubPlan 1
+    ->  Seq Scan on comments r  (cost=0.00..2788.00 rows=150000 width=4) (actual time=0.005..9.957 rows=150000.00 loops=1)
+          Buffers: shared hit=1288
+Planning:
+  Buffers: shared hit=72
+Planning Time: 0.323 ms
+Execution Time: 44.546 ms
+=== R13 run 2 ===
+Seq Scan on comments c  (cost=3163.00..6701.00 rows=2 width=24) (actual time=47.393..47.396 rows=0.00 loops=1)
+  Filter: ((NOT (ANY (comment_id = (hashed SubPlan 1).col1))) AND (post_id = 59689))
+  Rows Removed by Filter: 150000
+  Buffers: shared hit=2576
+  SubPlan 1
+    ->  Seq Scan on comments r  (cost=0.00..2788.00 rows=150000 width=4) (actual time=0.010..10.227 rows=150000.00 loops=1)
+          Buffers: shared hit=1288
+Planning:
+  Buffers: shared hit=72
+Planning Time: 0.320 ms
+Execution Time: 47.456 ms
+=== R13 run 3 ===
+Seq Scan on comments c  (cost=3163.00..6701.00 rows=2 width=24) (actual time=50.777..50.778 rows=0.00 loops=1)
+  Filter: ((NOT (ANY (comment_id = (hashed SubPlan 1).col1))) AND (post_id = 59689))
+  Rows Removed by Filter: 150000
+  Buffers: shared hit=2576
+  SubPlan 1
+    ->  Seq Scan on comments r  (cost=0.00..2788.00 rows=150000 width=4) (actual time=0.007..11.124 rows=150000.00 loops=1)
+          Buffers: shared hit=1288
+Planning:
+  Buffers: shared hit=72
+Planning Time: 0.446 ms
+Execution Time: 50.849 ms

@@ -41,9 +41,9 @@ CREATE TABLE posts (
         CHECK (post_type IN ('PHOTO', 'VIDEO', 'CAROUSEL', 'REEL')),
     caption TEXT,
     location_name TEXT,
-    like_count INTEGER NOT NULL CHECK (like_count >= 0),
-    comment_count INTEGER NOT NULL CHECK (comment_count >= 0),
-    is_archived BOOLEAN NOT NULL,
+    like_count INTEGER NOT NULL DEFAULT 0 CHECK (like_count >= 0),
+    comment_count INTEGER NOT NULL DEFAULT 0 CHECK (comment_count >= 0),
+    is_archived BOOLEAN NOT NULL DEFAULT FALSE,
     created_at TIMESTAMPTZ NOT NULL
 );
 

@@ -1,0 +1,45 @@
+=== R22 run 1 ===
+Limit  (cost=2962.41..2962.48 rows=25 width=36) (actual time=10.847..10.855 rows=25.00 loops=1)
+  Buffers: shared hit=1291
+  ->  Sort  (cost=2958.66..2966.06 rows=2960 width=36) (actual time=10.684..10.802 rows=1525.00 loops=1)
+        Sort Key: created_at DESC
+        Sort Method: quicksort  Memory: 311kB
+        Buffers: shared hit=1291
+        ->  Seq Scan on comments  (cost=0.00..2788.00 rows=2960 width=36) (actual time=0.011..10.049 rows=3046.00 loops=1)
+              Filter: is_hidden
+              Rows Removed by Filter: 146954
+              Buffers: shared hit=1288
+Planning:
+  Buffers: shared hit=98
+Planning Time: 0.363 ms
+Execution Time: 10.891 ms
+=== R22 run 2 ===
+Limit  (cost=2962.41..2962.48 rows=25 width=36) (actual time=10.616..10.619 rows=25.00 loops=1)
+  Buffers: shared hit=1291
+  ->  Sort  (cost=2958.66..2966.06 rows=2960 width=36) (actual time=10.469..10.567 rows=1525.00 loops=1)
+        Sort Key: created_at DESC
+        Sort Method: quicksort  Memory: 311kB
+        Buffers: shared hit=1291
+        ->  Seq Scan on comments  (cost=0.00..2788.00 rows=2960 width=36) (actual time=0.013..9.761 rows=3046.00 loops=1)
+              Filter: is_hidden
+              Rows Removed by Filter: 146954
+              Buffers: shared hit=1288
+Planning:
+  Buffers: shared hit=98
+Planning Time: 0.420 ms
+Execution Time: 10.653 ms
+=== R22 run 3 ===
+Limit  (cost=2962.41..2962.48 rows=25 width=36) (actual time=10.856..10.860 rows=25.00 loops=1)
+  Buffers: shared hit=1291
+  ->  Sort  (cost=2958.66..2966.06 rows=2960 width=36) (actual time=10.704..10.808 rows=1525.00 loops=1)
+        Sort Key: created_at DESC
+        Sort Method: quicksort  Memory: 311kB
+        Buffers: shared hit=1291
+        ->  Seq Scan on comments  (cost=0.00..2788.00 rows=2960 width=36) (actual time=0.023..10.054 rows=3046.00 loops=1)
+              Filter: is_hidden
+              Rows Removed by Filter: 146954
+              Buffers: shared hit=1288
+Planning:
+  Buffers: shared hit=98
+Planning Time: 0.434 ms
+Execution Time: 11.062 ms
