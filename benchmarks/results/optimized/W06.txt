@@ -1,0 +1,51 @@
+=== W06 run 1 ===
+Update on follows  (cost=4.50..46.17 rows=0 width=0) (actual time=3.027..3.028 rows=0.00 loops=1)
+  Buffers: shared hit=236 read=19 dirtied=32
+  ->  Bitmap Heap Scan on follows  (cost=4.50..46.17 rows=1 width=38) (actual time=0.065..0.146 rows=15.00 loops=1)
+        Recheck Cond: (followee_id = 338)
+        Filter: (status = 'PENDING'::text)
+        Rows Removed by Filter: 40
+        Heap Blocks: exact=56
+        Buffers: shared hit=58 read=1
+        ->  Bitmap Index Scan on idx_follows_followee_id  (cost=0.00..4.50 rows=11 width=0) (actual time=0.042..0.042 rows=85.00 loops=1)
+              Index Cond: (followee_id = 338)
+              Index Searches: 1
+              Buffers: shared hit=2 read=1
+Planning:
+  Buffers: shared hit=97
+Planning Time: 0.370 ms
+Execution Time: 3.116 ms
+=== W06 run 2 ===
+Update on follows  (cost=4.50..46.17 rows=0 width=0) (actual time=0.411..0.412 rows=0.00 loops=1)
+  Buffers: shared hit=252 dirtied=1
+  ->  Bitmap Heap Scan on follows  (cost=4.50..46.17 rows=1 width=38) (actual time=0.043..0.146 rows=15.00 loops=1)
+        Recheck Cond: (followee_id = 338)
+        Filter: (status = 'PENDING'::text)
+        Rows Removed by Filter: 40
+        Heap Blocks: exact=55
+        Buffers: shared hit=58
+        ->  Bitmap Index Scan on idx_follows_followee_id  (cost=0.00..4.50 rows=11 width=0) (actual time=0.016..0.017 rows=70.00 loops=1)
+              Index Cond: (followee_id = 338)
+              Index Searches: 1
+              Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=97
+Planning Time: 0.369 ms
+Execution Time: 0.508 ms
+=== W06 run 3 ===
+Update on follows  (cost=4.50..46.17 rows=0 width=0) (actual time=0.672..0.672 rows=0.00 loops=1)
+  Buffers: shared hit=255 dirtied=1
+  ->  Bitmap Heap Scan on follows  (cost=4.50..46.17 rows=1 width=38) (actual time=0.052..0.181 rows=15.00 loops=1)
+        Recheck Cond: (followee_id = 338)
+        Filter: (status = 'PENDING'::text)
+        Rows Removed by Filter: 40
+        Heap Blocks: exact=56
+        Buffers: shared hit=59
+        ->  Bitmap Index Scan on idx_follows_followee_id  (cost=0.00..4.50 rows=11 width=0) (actual time=0.021..0.021 rows=85.00 loops=1)
+              Index Cond: (followee_id = 338)
+              Index Searches: 1
+              Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=97
+Planning Time: 0.425 ms
+Execution Time: 0.774 ms

@@ -1,0 +1,78 @@
+=== R14 run 1 ===
+Merge Anti Join  (cost=46.78..55.03 rows=11 width=4) (actual time=5.770..5.781 rows=81.00 loops=1)
+  Merge Cond: (f.follower_id = b.followee_id)
+  Buffers: shared hit=5 read=78
+  ->  Sort  (cost=46.36..46.39 rows=11 width=4) (actual time=5.645..5.648 rows=81.00 loops=1)
+        Sort Key: f.follower_id
+        Sort Method: quicksort  Memory: 25kB
+        Buffers: shared hit=2 read=77
+        ->  Bitmap Heap Scan on follows f  (cost=4.51..46.17 rows=11 width=4) (actual time=0.271..5.631 rows=81.00 loops=1)
+              Recheck Cond: (followee_id = 217)
+              Filter: (status = 'ACCEPTED'::text)
+              Heap Blocks: exact=76
+              Buffers: shared hit=2 read=77
+              ->  Bitmap Index Scan on idx_follows_followee_id  (cost=0.00..4.50 rows=11 width=0) (actual time=0.028..0.028 rows=81.00 loops=1)
+                    Index Cond: (followee_id = 217)
+                    Index Searches: 1
+                    Buffers: shared hit=2 read=1
+  ->  Index Only Scan using follows_pkey on follows b  (cost=0.42..8.58 rows=9 width=4) (actual time=0.122..0.122 rows=5.00 loops=1)
+        Index Cond: (follower_id = 217)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=3 read=1
+Planning:
+  Buffers: shared hit=126
+Planning Time: 0.635 ms
+Execution Time: 5.829 ms
+=== R14 run 2 ===
+Merge Anti Join  (cost=46.78..55.03 rows=11 width=4) (actual time=0.208..0.219 rows=81.00 loops=1)
+  Merge Cond: (f.follower_id = b.followee_id)
+  Buffers: shared hit=83
+  ->  Sort  (cost=46.36..46.39 rows=11 width=4) (actual time=0.196..0.200 rows=81.00 loops=1)
+        Sort Key: f.follower_id
+        Sort Method: quicksort  Memory: 25kB
+        Buffers: shared hit=79
+        ->  Bitmap Heap Scan on follows f  (cost=4.51..46.17 rows=11 width=4) (actual time=0.024..0.185 rows=81.00 loops=1)
+              Recheck Cond: (followee_id = 217)
+              Filter: (status = 'ACCEPTED'::text)
+              Heap Blocks: exact=76
+              Buffers: shared hit=79
+              ->  Bitmap Index Scan on idx_follows_followee_id  (cost=0.00..4.50 rows=11 width=0) (actual time=0.010..0.011 rows=81.00 loops=1)
+                    Index Cond: (followee_id = 217)
+                    Index Searches: 1
+                    Buffers: shared hit=3
+  ->  Index Only Scan using follows_pkey on follows b  (cost=0.42..8.58 rows=9 width=4) (actual time=0.009..0.009 rows=5.00 loops=1)
+        Index Cond: (follower_id = 217)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=126
+Planning Time: 0.544 ms
+Execution Time: 0.267 ms
+=== R14 run 3 ===
+Merge Anti Join  (cost=46.78..55.03 rows=11 width=4) (actual time=0.244..0.254 rows=81.00 loops=1)
+  Merge Cond: (f.follower_id = b.followee_id)
+  Buffers: shared hit=83
+  ->  Sort  (cost=46.36..46.39 rows=11 width=4) (actual time=0.233..0.236 rows=81.00 loops=1)
+        Sort Key: f.follower_id
+        Sort Method: quicksort  Memory: 25kB
+        Buffers: shared hit=79
+        ->  Bitmap Heap Scan on follows f  (cost=4.51..46.17 rows=11 width=4) (actual time=0.026..0.221 rows=81.00 loops=1)
+              Recheck Cond: (followee_id = 217)
+              Filter: (status = 'ACCEPTED'::text)
+              Heap Blocks: exact=76
+              Buffers: shared hit=79
+              ->  Bitmap Index Scan on idx_follows_followee_id  (cost=0.00..4.50 rows=11 width=0) (actual time=0.011..0.012 rows=81.00 loops=1)
+                    Index Cond: (followee_id = 217)
+                    Index Searches: 1
+                    Buffers: shared hit=3
+  ->  Index Only Scan using follows_pkey on follows b  (cost=0.42..8.58 rows=9 width=4) (actual time=0.008..0.009 rows=5.00 loops=1)
+        Index Cond: (follower_id = 217)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=126
+Planning Time: 0.531 ms
+Execution Time: 0.310 ms

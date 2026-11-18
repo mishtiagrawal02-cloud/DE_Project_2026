@@ -1,0 +1,99 @@
+=== R21 run 1 ===
+Sort  (cost=154.82..154.85 rows=11 width=4) (actual time=11.356..11.360 rows=81.00 loops=1)
+  Sort Key: f.follower_id
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=3612 read=74
+  ->  Nested Loop Anti Join  (cost=5.22..154.63 rows=11 width=4) (actual time=0.883..11.335 rows=81.00 loops=1)
+        Buffers: shared hit=3609 read=74
+        ->  Bitmap Heap Scan on follows f  (cost=4.51..46.17 rows=11 width=4) (actual time=0.030..0.238 rows=81.00 loops=1)
+              Recheck Cond: (followee_id = 217)
+              Filter: (status = 'ACCEPTED'::text)
+              Heap Blocks: exact=76
+              Buffers: shared hit=79
+              ->  Bitmap Index Scan on idx_follows_followee_id  (cost=0.00..4.50 rows=11 width=0) (actual time=0.015..0.015 rows=81.00 loops=1)
+                    Index Cond: (followee_id = 217)
+                    Index Searches: 1
+                    Buffers: shared hit=3
+        ->  Nested Loop  (cost=0.71..9.85 rows=1 width=4) (actual time=0.137..0.137 rows=0.00 loops=81)
+              Buffers: shared hit=3530 read=74
+              ->  Index Only Scan using likes_pkey on likes l  (cost=0.42..5.05 rows=15 width=8) (actual time=0.102..0.102 rows=13.83 loops=81)
+                    Index Cond: (user_id = f.follower_id)
+                    Heap Fetches: 0
+                    Index Searches: 81
+                    Buffers: shared hit=170 read=74
+              ->  Index Scan using posts_pkey on posts p  (cost=0.29..0.32 rows=1 width=4) (actual time=0.002..0.002 rows=0.00 loops=1120)
+                    Index Cond: (post_id = l.post_id)
+                    Filter: (user_id = 217)
+                    Rows Removed by Filter: 1
+                    Index Searches: 1120
+                    Buffers: shared hit=3360
+Planning:
+  Buffers: shared hit=195
+Planning Time: 0.945 ms
+Execution Time: 11.414 ms
+=== R21 run 2 ===
+Sort  (cost=154.82..154.85 rows=11 width=4) (actual time=3.912..3.916 rows=81.00 loops=1)
+  Sort Key: f.follower_id
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=3686
+  ->  Nested Loop Anti Join  (cost=5.22..154.63 rows=11 width=4) (actual time=0.161..3.891 rows=81.00 loops=1)
+        Buffers: shared hit=3683
+        ->  Bitmap Heap Scan on follows f  (cost=4.51..46.17 rows=11 width=4) (actual time=0.037..0.260 rows=81.00 loops=1)
+              Recheck Cond: (followee_id = 217)
+              Filter: (status = 'ACCEPTED'::text)
+              Heap Blocks: exact=76
+              Buffers: shared hit=79
+              ->  Bitmap Index Scan on idx_follows_followee_id  (cost=0.00..4.50 rows=11 width=0) (actual time=0.020..0.020 rows=81.00 loops=1)
+                    Index Cond: (followee_id = 217)
+                    Index Searches: 1
+                    Buffers: shared hit=3
+        ->  Nested Loop  (cost=0.71..9.85 rows=1 width=4) (actual time=0.045..0.045 rows=0.00 loops=81)
+              Buffers: shared hit=3604
+              ->  Index Only Scan using likes_pkey on likes l  (cost=0.42..5.05 rows=15 width=8) (actual time=0.004..0.005 rows=13.83 loops=81)
+                    Index Cond: (user_id = f.follower_id)
+                    Heap Fetches: 0
+                    Index Searches: 81
+                    Buffers: shared hit=244
+              ->  Index Scan using posts_pkey on posts p  (cost=0.29..0.32 rows=1 width=4) (actual time=0.003..0.003 rows=0.00 loops=1120)
+                    Index Cond: (post_id = l.post_id)
+                    Filter: (user_id = 217)
+                    Rows Removed by Filter: 1
+                    Index Searches: 1120
+                    Buffers: shared hit=3360
+Planning:
+  Buffers: shared hit=195
+Planning Time: 1.030 ms
+Execution Time: 3.978 ms
+=== R21 run 3 ===
+Sort  (cost=154.82..154.85 rows=11 width=4) (actual time=2.992..2.995 rows=81.00 loops=1)
+  Sort Key: f.follower_id
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=3686
+  ->  Nested Loop Anti Join  (cost=5.22..154.63 rows=11 width=4) (actual time=0.121..2.972 rows=81.00 loops=1)
+        Buffers: shared hit=3683
+        ->  Bitmap Heap Scan on follows f  (cost=4.51..46.17 rows=11 width=4) (actual time=0.029..0.185 rows=81.00 loops=1)
+              Recheck Cond: (followee_id = 217)
+              Filter: (status = 'ACCEPTED'::text)
+              Heap Blocks: exact=76
+              Buffers: shared hit=79
+              ->  Bitmap Index Scan on idx_follows_followee_id  (cost=0.00..4.50 rows=11 width=0) (actual time=0.014..0.014 rows=81.00 loops=1)
+                    Index Cond: (followee_id = 217)
+                    Index Searches: 1
+                    Buffers: shared hit=3
+        ->  Nested Loop  (cost=0.71..9.85 rows=1 width=4) (actual time=0.034..0.034 rows=0.00 loops=81)
+              Buffers: shared hit=3604
+              ->  Index Only Scan using likes_pkey on likes l  (cost=0.42..5.05 rows=15 width=8) (actual time=0.003..0.004 rows=13.83 loops=81)
+                    Index Cond: (user_id = f.follower_id)
+                    Heap Fetches: 0
+                    Index Searches: 81
+                    Buffers: shared hit=244
+              ->  Index Scan using posts_pkey on posts p  (cost=0.29..0.32 rows=1 width=4) (actual time=0.002..0.002 rows=0.00 loops=1120)
+                    Index Cond: (post_id = l.post_id)
+                    Filter: (user_id = 217)
+                    Rows Removed by Filter: 1
+                    Index Searches: 1120
+                    Buffers: shared hit=3360
+Planning:
+  Buffers: shared hit=195
+Planning Time: 0.845 ms
+Execution Time: 3.049 ms
