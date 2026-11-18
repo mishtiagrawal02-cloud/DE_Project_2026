@@ -1,0 +1,75 @@
+=== R09 run 1 ===
+Sort  (cost=54.49..54.49 rows=1 width=28) (actual time=4.641..4.643 rows=15.00 loops=1)
+  Sort Key: f.created_at DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=40 read=67
+  ->  Nested Loop  (cost=4.79..54.48 rows=1 width=28) (actual time=0.811..4.608 rows=15.00 loops=1)
+        Buffers: shared hit=37 read=67
+        ->  Bitmap Heap Scan on follows f  (cost=4.50..46.17 rows=1 width=12) (actual time=0.800..2.404 rows=15.00 loops=1)
+              Recheck Cond: (followee_id = 338)
+              Filter: (status = 'PENDING'::text)
+              Rows Removed by Filter: 40
+              Heap Blocks: exact=56
+              Buffers: shared hit=2 read=57
+              ->  Bitmap Index Scan on idx_follows_followee_id  (cost=0.00..4.50 rows=11 width=0) (actual time=0.035..0.035 rows=85.00 loops=1)
+                    Index Cond: (followee_id = 338)
+                    Index Searches: 1
+                    Buffers: shared hit=2 read=1
+        ->  Index Scan using users_pkey on users u  (cost=0.29..8.31 rows=1 width=20) (actual time=0.146..0.146 rows=1.00 loops=15)
+              Index Cond: (user_id = f.follower_id)
+              Index Searches: 15
+              Buffers: shared hit=35 read=10
+Planning:
+  Buffers: shared hit=281
+Planning Time: 0.848 ms
+Execution Time: 4.681 ms
+=== R09 run 2 ===
+Sort  (cost=54.49..54.49 rows=1 width=28) (actual time=0.204..0.205 rows=15.00 loops=1)
+  Sort Key: f.created_at DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=107
+  ->  Nested Loop  (cost=4.79..54.48 rows=1 width=28) (actual time=0.040..0.184 rows=15.00 loops=1)
+        Buffers: shared hit=104
+        ->  Bitmap Heap Scan on follows f  (cost=4.50..46.17 rows=1 width=12) (actual time=0.032..0.098 rows=15.00 loops=1)
+              Recheck Cond: (followee_id = 338)
+              Filter: (status = 'PENDING'::text)
+              Rows Removed by Filter: 40
+              Heap Blocks: exact=56
+              Buffers: shared hit=59
+              ->  Bitmap Index Scan on idx_follows_followee_id  (cost=0.00..4.50 rows=11 width=0) (actual time=0.014..0.014 rows=85.00 loops=1)
+                    Index Cond: (followee_id = 338)
+                    Index Searches: 1
+                    Buffers: shared hit=3
+        ->  Index Scan using users_pkey on users u  (cost=0.29..8.31 rows=1 width=20) (actual time=0.005..0.005 rows=1.00 loops=15)
+              Index Cond: (user_id = f.follower_id)
+              Index Searches: 15
+              Buffers: shared hit=45
+Planning:
+  Buffers: shared hit=281
+Planning Time: 0.787 ms
+Execution Time: 0.242 ms
+=== R09 run 3 ===
+Sort  (cost=54.49..54.49 rows=1 width=28) (actual time=0.205..0.206 rows=15.00 loops=1)
+  Sort Key: f.created_at DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=107
+  ->  Nested Loop  (cost=4.79..54.48 rows=1 width=28) (actual time=0.039..0.186 rows=15.00 loops=1)
+        Buffers: shared hit=104
+        ->  Bitmap Heap Scan on follows f  (cost=4.50..46.17 rows=1 width=12) (actual time=0.032..0.097 rows=15.00 loops=1)
+              Recheck Cond: (followee_id = 338)
+              Filter: (status = 'PENDING'::text)
+              Rows Removed by Filter: 40
+              Heap Blocks: exact=56
+              Buffers: shared hit=59
+              ->  Bitmap Index Scan on idx_follows_followee_id  (cost=0.00..4.50 rows=11 width=0) (actual time=0.014..0.014 rows=85.00 loops=1)
+                    Index Cond: (followee_id = 338)
+                    Index Searches: 1
+                    Buffers: shared hit=3
+        ->  Index Scan using users_pkey on users u  (cost=0.29..8.31 rows=1 width=20) (actual time=0.006..0.006 rows=1.00 loops=15)
+              Index Cond: (user_id = f.follower_id)
+              Index Searches: 15
+              Buffers: shared hit=45
+Planning:
+  Buffers: shared hit=281
+Planning Time: 0.811 ms
+Execution Time: 0.241 ms

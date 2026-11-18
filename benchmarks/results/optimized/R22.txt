@@ -1,0 +1,45 @@
+=== R22 run 1 ===
+Limit  (cost=2978.97..2979.03 rows=25 width=36) (actual time=12.286..12.289 rows=25.00 loops=1)
+  Buffers: shared hit=16 read=1275
+  ->  Sort  (cost=2975.22..2983.31 rows=3235 width=36) (actual time=12.154..12.238 rows=1525.00 loops=1)
+        Sort Key: created_at DESC
+        Sort Method: quicksort  Memory: 311kB
+        Buffers: shared hit=16 read=1275
+        ->  Seq Scan on comments  (cost=0.00..2788.00 rows=3235 width=36) (actual time=0.447..11.480 rows=3046.00 loops=1)
+              Filter: is_hidden
+              Rows Removed by Filter: 146954
+              Buffers: shared hit=13 read=1275
+Planning:
+  Buffers: shared hit=123
+Planning Time: 0.452 ms
+Execution Time: 12.311 ms
+=== R22 run 2 ===
+Limit  (cost=2978.97..2979.03 rows=25 width=36) (actual time=10.533..10.536 rows=25.00 loops=1)
+  Buffers: shared hit=1291
+  ->  Sort  (cost=2975.22..2983.31 rows=3235 width=36) (actual time=10.379..10.484 rows=1525.00 loops=1)
+        Sort Key: created_at DESC
+        Sort Method: quicksort  Memory: 311kB
+        Buffers: shared hit=1291
+        ->  Seq Scan on comments  (cost=0.00..2788.00 rows=3235 width=36) (actual time=0.013..9.749 rows=3046.00 loops=1)
+              Filter: is_hidden
+              Rows Removed by Filter: 146954
+              Buffers: shared hit=1288
+Planning:
+  Buffers: shared hit=123
+Planning Time: 0.428 ms
+Execution Time: 10.558 ms
+=== R22 run 3 ===
+Limit  (cost=2978.97..2979.03 rows=25 width=36) (actual time=10.273..10.276 rows=25.00 loops=1)
+  Buffers: shared hit=1291
+  ->  Sort  (cost=2975.22..2983.31 rows=3235 width=36) (actual time=10.119..10.224 rows=1525.00 loops=1)
+        Sort Key: created_at DESC
+        Sort Method: quicksort  Memory: 311kB
+        Buffers: shared hit=1291
+        ->  Seq Scan on comments  (cost=0.00..2788.00 rows=3235 width=36) (actual time=0.013..9.464 rows=3046.00 loops=1)
+              Filter: is_hidden
+              Rows Removed by Filter: 146954
+              Buffers: shared hit=1288
+Planning:
+  Buffers: shared hit=123
+Planning Time: 0.411 ms
+Execution Time: 10.299 ms
